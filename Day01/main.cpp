@@ -1,9 +1,4 @@
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <list>
-
-using namespace std;
+#include "../AoC.hpp"
 
 int main()
 {

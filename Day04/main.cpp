@@ -36,11 +36,23 @@ int check_diagonal(vector<string> lines, int l, int c)
 	return (ret);
 }
 
+int	check_cross(vector<string> lines, int l, int c)
+{
+	int	ret = 0, i, j;
+	if (l >= 1 && l <= width - 2 && c >= 1 && c <= height - 2)
+	{
+		ret += ((lines.at(l - 1).at(c - 1) == 'M' && lines.at(l + 1).at(c + 1) == 'S')
+				|| (lines.at(l - 1).at(c - 1) == 'S' && lines.at(l + 1).at(c + 1) == 'M'))
+			&& ((lines.at(l + 1).at(c - 1) == 'M' && lines.at(l - 1).at(c + 1) == 'S')
+				|| (lines.at(l + 1).at(c - 1) == 'S' && lines.at(l - 1).at(c + 1) == 'M'));
+	}
+	return (ret);
+}
+
 int main()
 {
 	ifstream		input("input.txt");
 	string			line;
-	// list<string>	lines;
 	vector<string>	lines;
 	int				ret = 0;
 
@@ -55,11 +67,13 @@ int main()
 	{
 		for (int c = 0; c < width; c++)
 		{
-			if (lines.at(l).at(c) == 'X')
-			{
-				ret += check_straight(lines, l, c);
-				ret += check_diagonal(lines, l, c);
-			}
+			// if (lines.at(l).at(c) == 'X')
+			// {
+			// 	ret += check_straight(lines, l, c);
+			// 	ret += check_diagonal(lines, l, c);
+			// }
+			if (lines.at(l).at(c) == 'A')
+				ret += check_cross(lines, l, c);
 		}
 	}
 	cout << ret << endl;

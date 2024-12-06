@@ -54,7 +54,7 @@ int main()
 	ifstream		input("input.txt");
 	string			line;
 	vector<string>	lines;
-	int				ret = 0;
+	int				ret1 = 0, ret2 = 0;
 
 	for (int i = 0; getline(input, line); i++)
 	{
@@ -67,14 +67,15 @@ int main()
 	{
 		for (int c = 0; c < width; c++)
 		{
-			// if (lines.at(l).at(c) == 'X')
-			// {
-			// 	ret += check_straight(lines, l, c);
-			// 	ret += check_diagonal(lines, l, c);
-			// }
+			if (lines.at(l).at(c) == 'X')
+			{
+				ret1 += check_straight(lines, l, c);
+				ret1 += check_diagonal(lines, l, c);
+			}
 			if (lines.at(l).at(c) == 'A')
-				ret += check_cross(lines, l, c);
+				ret2 += check_cross(lines, l, c);
 		}
 	}
-	cout << ret << endl;
+	cout << ret1 << endl;
+	cout << ret2 << endl;
 }
